@@ -1,0 +1,74 @@
+<!--*********** Header ***********-->
+<ion-header no-border>
+    <ion-navbar color="bluegray">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Wishlists</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only (click)="addWishList()">
+                <ion-icon name="md-add" outline></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+  <!-- <ion-toolbar color="bluegray">
+      <ion-searchbar ></ion-searchbar>
+  </ion-toolbar> -->
+</ion-header>
+<ion-content>
+<ion-row>
+  <ion-col text-center>
+    <button ion-button color="dark">My Lists</button>
+    <button ion-button color="light">Friend's Lists</button>
+  </ion-col>
+</ion-row>
+
+
+<ion-list>
+    <div  *ngFor="let list of giftlists">
+        <ion-item class="item-divider">{{list.name}} ({{list.itemIds.length}})</ion-item>
+        <!-- <ion-item ng-repeat="item in groupedPair[1] track by item.id">
+            {{item.name}}
+        </ion-item> -->
+        <ion-scroll scrollX="true">
+          <ion-card tappable  *ngFor="let listItem of list.itemIds">
+                <div class="banner-bg" [ngStyle]="{'background-image': 'url(' + listItem.imageUrl+ ')'}">
+                  <h2 class="banner-title"> {{listItem.sku}}</h2>
+                </div>
+          </ion-card>
+        </ion-scroll>
+    </div>
+</ion-list>
+
+<!-- <div class = "list">
+ <div class = "item item-divider">Item Divider 1</div>
+<ion-scroll scrollX="true">
+  <ion-card tappable  *ngFor="let list of giftlists" (click)="openList(category.$key)">
+        <div class="banner-bg" [ngStyle]="{'background-image': 'url(' + list.imageUrl+ ')'}">
+          <h2 class="banner-title"> {{list.name}}</h2>
+        </div>
+  </ion-card>
+</ion-scroll>
+
+
+  <div class = "item item-divider">Item Divider 2</div>
+<ion-scroll scrollX="true">
+  <ion-card tappable  *ngFor="let category of category" (click)="openList(category.$key)">
+        <div class="banner-bg" [ngStyle]="{'background-image': 'url(' + category.imgBg+ ')'}">
+          <h2 class="banner-title"> {{category.name}}</h2>
+          <p class="banner-description"> {{category.description}}</p>
+        </div>
+  </ion-card>
+</ion-scroll>
+</div> -->
+
+  <ion-fab right bottom>
+      <button ion-fab color="ios-orange"><ion-icon name="chatbubbles"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab><ion-icon name="call"></ion-icon></button>
+        <button ion-fab><ion-icon name="chatboxes"></ion-icon></button>
+        <button ion-fab><ion-icon name="images"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
+
+</ion-content>
